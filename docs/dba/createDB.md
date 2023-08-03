@@ -35,3 +35,49 @@ CREATE TABLE `users`  (
 SET FOREIGN_KEY_CHECKS = 1;
 ```
 
+# Relation表
+
+```sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for relations
+-- ----------------------------
+DROP TABLE IF EXISTS `relations`;
+CREATE TABLE `relations`  (
+  `relation_id` int(0) UNSIGNED NOT NULL COMMENT 'relation_id ',
+  `follow_id` int(0) UNSIGNED NOT NULL COMMENT 'follow_id 被关注者id',
+  `follower_id` int(0) UNSIGNED NOT NULL COMMENT 'follower_id 关注者id',
+  `is_follow` int(0) NOT NULL COMMENT 'is_follow 关注关系是否还存在',
+  `create_time` datetime(0) NOT NULL COMMENT 'create_time 首次创建填充',
+  `update_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'update_time 修改刷新',
+  PRIMARY KEY (`relation_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+```
+
+# friend表
+
+```sql
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for friends
+-- ----------------------------
+DROP TABLE IF EXISTS `friends`;
+CREATE TABLE `friends`  (
+  `friend_id` int(0) UNSIGNED NOT NULL COMMENT 'friend_id 主键',
+  `user1_id` int(0) UNSIGNED NOT NULL COMMENT 'user1_id',
+  `user2_id` int(0) UNSIGNED NOT NULL COMMENT 'user2_id',
+  `is_delete` int(0) NOT NULL COMMENT 'is_delete 关系是否还存在',
+  `create_time` datetime(0) NOT NULL COMMENT 'create_time',
+  `update_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0) COMMENT 'update_time',
+  PRIMARY KEY (`friend_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+SET FOREIGN_KEY_CHECKS = 1;
+```
+

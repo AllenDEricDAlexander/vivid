@@ -8,7 +8,7 @@
 *.so
 *.dylib
 
-/src/**/.idea
+src/**/.idea
 
 # Test binary, built with `go test -c`
 *.test
